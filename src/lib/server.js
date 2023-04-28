@@ -9,9 +9,10 @@ const database  = require('../config/database');
 
 const swaggerOptions = {
     info: {
-        title: 'Banking API Documentation',
+        title: 'Portfolio API Documentation',
         version: '1'
     },
+    security: {bearerAuth: []} ,
     grouping: 'tags',
     sortEndpoints: 'ordered'
 }

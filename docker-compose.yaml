@@ -1,4 +1,4 @@
-version: '1.0.0'
+version: '3'
 volumes:
   psql-data:
 
@@ -6,13 +6,14 @@ services:
   nodejs:
     build: ./.docker/node/
     image: node:13.8-alpine3.10
-    container_name: Backend-porfolio
+    container_name: Backend-portfolio
 #    restart: unless-stopped
     env_file:
       - ./.docker/node/env
       - ./.docker/postgres/env
     ports:
       - 3008:3008
+      - 9229:9229 # debug port
     volumes:
       - .:/home/node/app
     networks:
@@ -25,7 +26,7 @@ services:
     command: sh -c "/wait && npm start"
   postgres:
     image: postgres:12
-    container_name: postgres-porfolio
+    container_name: postgres-portfolio
     env_file:
       - ./.docker/postgres/env
     volumes:
@@ -39,7 +40,7 @@ services:
 
   pgadmin:
     image: dpage/pgadmin4
-    container_name: pgadmin-porfolio
+    container_name: pgadmin-portfolio
     env_file:
       - ./.docker/postgres/env
     depends_on:
