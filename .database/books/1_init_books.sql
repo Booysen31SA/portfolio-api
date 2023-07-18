@@ -80,6 +80,13 @@ CREATE TABLE books.publishers (
 	CONSTRAINT publishers_pkey PRIMARY KEY (publisher_id)
 );
 
+ALTER TABLE books.book_authors DROP CONSTRAINT fk_bookauthors_book;
+ALTER TABLE books.book_authors ADD CONSTRAINT fk_bookauthors_book FOREIGN KEY (book_id) REFERENCES books.books(book_id) ON DELETE CASCADE;
+
+ALTER TABLE books.book_genres DROP CONSTRAINT fk_bookgenres_book;
+ALTER TABLE books.book_genres ADD CONSTRAINT fk_bookgenres_book FOREIGN KEY (book_id) REFERENCES books.books(book_id) ON DELETE CASCADE;
+
+
 INSERT INTO books.authors (first_name,middle_name,last_name) VALUES
 	 ('Gregorio','Cate','Caryl'),
 	 ('Valeria','Birk','Wendeline'),
